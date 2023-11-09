@@ -1,19 +1,19 @@
 # 크리스마스 프로모션
 
 ## 구현할 기능 목록
-- [ ] 날짜에 따라 크리스마스 디데이 할인 금액을 구한다. - Discount#getChristmasDDayDiscount()
-- [ ] 날짜의 요일에 따른 할인 금액을 구한다. - Discount#getDayOfWeekDiscount()
-- [ ] 날짜에 따른 특별 할인 금액을 구한다. - Discount#getSpecialDiscount()
-- [ ] 증정 이벤트로 받는 메뉴의 금액을 체크한다. - Discount#getAdditionalEventDiscount()
-- [ ] 총 혜택 금액을 구한다. - Discount#getTotalDiscount()
+- [ ] 날짜에 따라 크리스마스 디데이 할인 금액을 구한다. - DiscountService#getChristmasDDayDiscount()
+- [ ] 날짜의 요일에 따른 할인 금액을 구한다. - DiscountService#getDayOfWeekDiscount()
+- [ ] 날짜에 따른 특별 할인 금액을 구한다. - DiscountService#getSpecialDiscount()
+- [ ] 증정 이벤트로 받는 메뉴의 금액을 체크한다. - DiscountService#getAdditionalEventDiscount()
+- [ ] 총 혜택 금액을 구한다. - DiscountService#getTotalDiscount()
   - [ ] 총주문 금액 10,000원 이상인지 체크한다.
-- [ ] 총 혜택 금액에 따라 이벤트 배지를 부여한다. - Discount#getEventBadge()
-- [ ] 메뉴에 따라 총 구매 금액을 구한다. - Menu#getTotalPrice()
-- [ ] 주문한 메뉴가 메뉴에 있는 음식들인지 체크한다. - Menu#checkMenuExisted()
-- [ ] 주문한 메뉴가 음료만 주문했는지 체크한다. - Menu#checkMenuOnlyDrink()
-- [ ] 주문한 메뉴 개수가 20개 초과인지 체크한다. - Menu#checkMenuCountOver()
+- [ ] 총 혜택 금액에 따라 이벤트 배지를 부여한다. - DiscountService#getEventBadge()
+- [ ] 메뉴에 따라 총 구매 금액을 구한다. - MenuService#getTotalPrice()
+- [ ] 주문한 메뉴가 메뉴에 있는 음식들인지 체크한다. - MenuService#checkMenuExisted()
+- [ ] 주문한 메뉴가 음료만 주문했는지 체크한다. - MenuService#checkMenuOnlyDrink()
+- [ ] 주문한 메뉴 개수가 20개 초과인지 체크한다. - MenuService#checkMenuCountOver()
   - [ ] 주문한 메뉴 총 개수를 구한다.
-- [ ] 주문 메뉴 잘못되었는지 체크한다. - Menu#checkMenu()
+- [ ] 주문 메뉴 잘못되었는지 체크한다. - MenuService#checkMenu()
   - [ ] 예외처리 : 없는 메뉴를 주문하는 경우
   - [ ] 예외처리 : 음료만 주문한 경우
   - [ ] 예외처리 : 총 메뉴 개수가 20개 초과인 경우
@@ -26,9 +26,10 @@
     - [ ] 예외처리 : 메뉴의 개수가 1 이상의 숫자가 아닌 경우
     - [ ] 예외처리 : 중복 메뉴를 입력한 경우
 - [ ] 출력
-  - [ ] 방문 날짜 안내 문구 출력 - OutputView#printDate()
-  - [ ] 메뉴 안내 문구 출력 - OutputView#printMenu()
-  - [ ] 이벤트 혜택 문구 출력 - OutputView#printEvent()
+  - [ ] 방문 날짜 안내 문구 출력 - OutputView#printDateGuide()
+  - [ ] 메뉴 안내 문구 출력 - OutputView#printMenuGuide()
+  - [ ] 주문 메뉴 출력 - OutputView#printMenu()
+  - [ ] 이벤트 혜택 출력 - OutputView#printEvent()
 
 
 ## 기능 요구 사항
