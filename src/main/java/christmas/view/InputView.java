@@ -4,11 +4,11 @@ import christmas.domain.Order;
 
 public class InputView {
 
-    public int readDate() {
+    public static int readDate() {
         return 0;
     }
 
-    public Order readMenu() {
+    public static Order readMenu() {
         return null;
     }
 }

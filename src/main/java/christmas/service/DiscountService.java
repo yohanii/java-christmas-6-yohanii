@@ -1,11 +1,12 @@
 package christmas.service;
 
 import christmas.domain.Badge;
+import christmas.domain.Discount;
 
 public class DiscountService {
 
-    public int getTotalDiscount() {
-        return 0;
+    public Discount getTotalDiscount() {
+        return null;
     }
 
     public int getChristmasDDayDiscount(int day) {
