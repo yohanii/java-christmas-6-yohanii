@@ -2,10 +2,11 @@ package christmas.service;
 
 import christmas.domain.Badge;
 import christmas.domain.Discount;
+import christmas.domain.Order;
 
 public class DiscountService {
 
-    public Discount getTotalDiscount() {
+    public Discount getDiscount(int day, Order order) {
         return null;
     }
 
@@ -13,7 +14,7 @@ public class DiscountService {
         return 0;
     }
 
-    public int getDayOfWeekDiscount(int day) {
+    public int getDayOfWeekDiscount(int day, Order order) {
         return 0;
     }
 

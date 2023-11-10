@@ -13,12 +13,12 @@ public class Application {
         MenuService menuService = new MenuService();
         DiscountService discountService = new DiscountService();
 
-        int date = InputView.readDate();
+        int day = InputView.readDate();
         Order order = InputView.readMenu();
 
         int totalPrice = menuService.getTotalPrice(order);
 
-        Discount totalDiscount = discountService.getTotalDiscount();
+        Discount totalDiscount = discountService.getDiscount(day, order);
 
         OutputView.printEvent(totalDiscount, totalPrice);
     }
