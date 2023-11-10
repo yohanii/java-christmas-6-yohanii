@@ -1,5 +1,10 @@
 package christmas.domain;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public enum Menu {
     MUSHROOM_SOUP("양송이수프", Category.APPETIZER, 6000)
     , TAPAS("타파스", Category.APPETIZER, 5500)
@@ -15,6 +20,8 @@ public enum Menu {
     , CHAMPAGNE("샴페인", Category.DRINK, 25000)
     ;
 
+    private static final Map<String, Menu> nameToMenu = Arrays.stream(Menu.values())
+            .collect(Collectors.toMap(menu -> menu.getName(), menu -> menu));
     private final String name;
     private final Category category;
     private final int price;
@@ -35,5 +42,9 @@ public enum Menu {
 
     public int getPrice() {
         return price;
+    }
+
+    public static Menu of(String name) {
+        return nameToMenu.get(name);
     }
 }
