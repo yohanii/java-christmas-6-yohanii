@@ -16,7 +16,6 @@ public class Application {
         int date = InputView.readDate();
         Order order = InputView.readMenu();
 
-        menuService.checkMenu(order);
         int totalPrice = menuService.getTotalPrice(order);
 
         Discount totalDiscount = discountService.getTotalDiscount();
