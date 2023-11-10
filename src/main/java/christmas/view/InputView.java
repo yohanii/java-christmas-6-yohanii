@@ -39,6 +39,7 @@ public class InputView {
     public static Order validateMenu(String input) {
         try {
             Map<Menu, Integer> store = Arrays.stream(input.split(","))
+                    .map(String::trim)
                     .map(str -> str.split("-"))
                     .collect(Collectors.toMap(elem -> findMenu(elem[0]), elem -> validateMenuQuantity(elem[1])));
             return new Order(store);
