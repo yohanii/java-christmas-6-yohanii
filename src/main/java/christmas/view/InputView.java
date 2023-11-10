@@ -25,7 +25,15 @@ public class InputView {
     }
 
     public static int validateDate(String input) {
-        return 0;
+        try {
+            Integer date = Integer.valueOf(input);
+            if (date < 1 || date > 31) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
+            return date;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
+        }
     }
 
     public static Order validateMenu(String input) {
