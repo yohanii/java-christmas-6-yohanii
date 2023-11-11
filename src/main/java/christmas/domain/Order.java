@@ -34,4 +34,13 @@ public class Order {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
+
+    public static Integer getTotalPrice(Order order) {
+        return order.getOrderStore()
+                .entrySet()
+                .stream()
+                .map(entry -> entry.getKey().getPrice() * entry.getValue())
+                .reduce((x, y) -> x + y)
+                .orElse(0);
+    }
 }
