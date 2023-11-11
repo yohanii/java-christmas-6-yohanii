@@ -1,6 +1,7 @@
 package christmas.service;
 
 import christmas.domain.Badge;
+import christmas.domain.Category;
 import christmas.domain.Discount;
 import christmas.domain.Order;
 
@@ -15,7 +16,20 @@ public class DiscountService {
     }
 
     public int getDayOfWeekDiscount(int day, Order order) {
-        return 0;
+        Category discountCategory = isWeekend(day) ? Category.MAIN : Category.DESSERT;
+
+        return order.getOrderStore()
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getKey().getCategory().equals(discountCategory))
+                .map(entry -> entry.getValue() * 2023)
+                .reduce((x, y) -> x + y)
+                .orElse(0);
+    }
+
+    private boolean isWeekend(int day) {
+        int remain = day % 7;
+        return remain == 1 || remain == 2;
     }
 
     public int getSpecialDiscount(int day) {
