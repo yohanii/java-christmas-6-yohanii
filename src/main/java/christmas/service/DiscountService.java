@@ -44,7 +44,7 @@ public class DiscountService {
     }
 
     public Badge getEventBadge(int totalDiscount) {
-        return null;
+        return Badge.getBadge(totalDiscount);
     }
 
 }
