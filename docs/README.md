@@ -21,11 +21,9 @@
     - [x] 예외처리 : 메뉴의 개수가 1 이상의 숫자가 아닌 경우
     - [x] 예외처리 : 중복 메뉴를 입력한 경우
     - [x] 예외처리 : 없는 메뉴를 주문하는 경우
-- [ ] 출력
-  - [ ] 방문 날짜 안내 문구 출력 - OutputView#printDateGuide()
-  - [ ] 메뉴 안내 문구 출력 - OutputView#printMenuGuide()
-  - [ ] 주문 메뉴 출력 - OutputView#printMenu()
-  - [ ] 이벤트 혜택 출력 - OutputView#printEvent()
+- [x] 출력
+  - [x] 주문 메뉴 출력 - OutputView#printMenu()
+  - [x] 이벤트 혜택 출력 - OutputView#printEvent()
 
 
 ## 기능 요구 사항

@@ -3,15 +3,21 @@ package christmas.domain;
 import java.util.Arrays;
 
 public enum Badge {
-    SANTA(20000)
-    , TREE(10000)
-    , STAR(5000)
-    , NONE(0);
+    SANTA("산타", 20000)
+    , TREE("트리", 10000)
+    , STAR("별", 5000)
+    , NONE("없음", 0);
 
+    private final String name;
     private final int min;
 
-    Badge(int min) {
+    Badge(String name, int min) {
+        this.name = name;
         this.min = min;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getMin() {

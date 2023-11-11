@@ -33,13 +33,14 @@ class DiscountServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"1, 1000, 4046, 0, 25000, 30046", "25, 3400, 6069, 1000, 25000, 35469", "31, 0, 6069, 1000, 25000, 32069"})
-    void getDiscount(int day, int christmasDDayDiscount, int dayOfWeekDiscount, int specialDiscount, int additionalEventDiscount, int totalDiscount) {
+    @CsvSource({"1, 1000, 0, 4046, 0, 25000, 30046", "25, 3400, 6069, 0, 1000, 25000, 35469", "31, 0, 6069, 0, 1000, 25000, 32069"})
+    void getDiscount(int day, int christmasDDayDiscount, int weekDayDiscount, int weekEndDiscount, int specialDiscount, int additionalEventDiscount, int totalDiscount) {
         Discount result = discountService.getDiscount(day, testOrder);
 
         assertThat(result.getTotalDiscount()).isEqualTo(totalDiscount);
         assertThat(result.getChristmasDDayDiscount()).isEqualTo(christmasDDayDiscount);
-        assertThat(result.getDayOfWeekDiscount()).isEqualTo(dayOfWeekDiscount);
+        assertThat(result.getWeekDayDiscount()).isEqualTo(weekDayDiscount);
+        assertThat(result.getWeekEndDiscount()).isEqualTo(weekEndDiscount);
         assertThat(result.getSpecialDiscount()).isEqualTo(specialDiscount);
         assertThat(result.getAdditionalEventDiscount()).isEqualTo(additionalEventDiscount);
         assertThat(result.getEventBadge()).isEqualTo(Badge.SANTA);
@@ -55,7 +56,8 @@ class DiscountServiceTest {
 
         assertThat(result.getTotalDiscount()).isEqualTo(0);
         assertThat(result.getChristmasDDayDiscount()).isEqualTo(0);
-        assertThat(result.getDayOfWeekDiscount()).isEqualTo(0);
+        assertThat(result.getWeekDayDiscount()).isEqualTo(0);
+        assertThat(result.getWeekEndDiscount()).isEqualTo(0);
         assertThat(result.getSpecialDiscount()).isEqualTo(0);
         assertThat(result.getAdditionalEventDiscount()).isEqualTo(0);
         assertThat(result.getEventBadge()).isEqualTo(Badge.NONE);

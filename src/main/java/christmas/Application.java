@@ -18,6 +18,7 @@ public class Application {
 
         Discount totalDiscount = discountService.getDiscount(day, order);
 
+        OutputView.printMenu(day, order);
         OutputView.printEvent(totalDiscount, totalPrice);
     }
 }

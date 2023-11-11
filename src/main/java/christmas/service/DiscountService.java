@@ -10,8 +10,16 @@ public class DiscountService {
             return new Discount();
         }
 
+        if (isWeekend(day)) {
+            return new Discount(getChristmasDDayDiscount(day)
+                    , 0
+                    , getDayOfWeekDiscount(day, order)
+                    , getSpecialDiscount(day)
+                    , getAdditionalEventDiscount(totalPrice));
+        }
         return new Discount(getChristmasDDayDiscount(day)
                 , getDayOfWeekDiscount(day, order)
+                , 0
                 , getSpecialDiscount(day)
                 , getAdditionalEventDiscount(totalPrice));
     }
