@@ -16,11 +16,22 @@ public class Order {
         return orderStore;
     }
 
-    public boolean validateDrinkOnly(Map<Menu, Integer> orderStore) {
-        return true;
+    public static void validateDrinkOnly(Map<Menu, Integer> orderStore) {
+        boolean isDrinkOnly = orderStore.keySet()
+                .stream()
+                .allMatch(menu -> menu.getCategory().equals(Category.DRINK));
+        if (isDrinkOnly) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 
-    public boolean validateMenuCountOver(Map<Menu, Integer> orderStore) {
-        return true;
+    public static void validateMenuCountOver(Map<Menu, Integer> orderStore) {
+        Integer menuCount = orderStore.values()
+                .stream()
+                .reduce((x, y) -> x + y)
+                .orElse(0);
+        if (menuCount > 20) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
     }
 }

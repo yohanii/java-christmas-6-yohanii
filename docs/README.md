@@ -13,9 +13,9 @@
 - [ ] 주문한 메뉴가 음료만 주문했는지 체크한다. - MenuService#checkMenuOnlyDrink()
 - [ ] 주문한 메뉴 개수가 20개 초과인지 체크한다. - MenuService#checkMenuCountOver()
   - [ ] 주문한 메뉴 총 개수를 구한다.
-- [ ] 주문 메뉴 잘못되었는지 체크한다.
-  - [ ] 예외처리 : 음료만 주문한 경우 - Order#validateDrinkOnly()
-  - [ ] 예외처리 : 총 메뉴 개수가 20개 초과인 경우 - Order#validateMenuCountOver()
+- [x] 주문 메뉴 잘못되었는지 체크한다.
+  - [x] 예외처리 : 음료만 주문한 경우 - Order#validateDrinkOnly()
+  - [x] 예외처리 : 총 메뉴 개수가 20개 초과인 경우 - Order#validateMenuCountOver()
 - [x] 입력
   - [x] 방문 날짜를 입력받는다. - InputView#readDate()
     - [x] 예외처리 : 숫자가 아닐 경우
