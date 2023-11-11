@@ -37,6 +37,9 @@ public class DiscountService {
     }
 
     public int getAdditionalEventDiscount(int totalPrice) {
+        if (totalPrice >= Event.additionalEventStandardPrice) {
+            return Event.additionalEventMenu.getPrice();
+        }
         return 0;
     }
 

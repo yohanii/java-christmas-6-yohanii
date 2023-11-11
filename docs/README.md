@@ -4,7 +4,7 @@
 - [x] 날짜에 따라 크리스마스 디데이 할인 금액을 구한다. - DiscountService#getChristmasDDayDiscount()
 - [x] 날짜의 요일에 따른 할인 금액을 구한다. - DiscountService#getDayOfWeekDiscount()
 - [x] 날짜에 따른 특별 할인 금액을 구한다. - DiscountService#getSpecialDiscount()
-- [ ] 증정 이벤트로 받는 메뉴의 금액을 체크한다. - DiscountService#getAdditionalEventDiscount()
+- [x] 증정 이벤트로 받는 메뉴의 금액을 체크한다. - DiscountService#getAdditionalEventDiscount()
 - [ ] 총 혜택 금액을 구한다. - DiscountService#getTotalDiscount()
   - [ ] 총주문 금액 10,000원 이상인지 체크한다.
 - [ ] 총 혜택 금액에 따라 이벤트 배지를 부여한다. - DiscountService#getEventBadge()
