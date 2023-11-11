@@ -5,7 +5,15 @@ import christmas.domain.*;
 public class DiscountService {
 
     public Discount getDiscount(int day, Order order) {
-        return null;
+        Integer totalPrice = Order.getTotalPrice(order);
+        if (totalPrice < 10000) {
+            return new Discount();
+        }
+
+        return new Discount(getChristmasDDayDiscount(day)
+                , getDayOfWeekDiscount(day, order)
+                , getSpecialDiscount(day)
+                , getAdditionalEventDiscount(totalPrice));
     }
 
     public int getChristmasDDayDiscount(int day) {

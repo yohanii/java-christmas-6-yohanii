@@ -9,13 +9,27 @@ public class Discount {
     private final int additionalEventDiscount;
     private final Badge eventBadge;
 
-    public Discount(int totalDiscount, int christmasDDayDiscount, int dayOfWeekDiscount, int specialDiscount, int additionalEventDiscount, Badge eventBadge) {
-        this.totalDiscount = totalDiscount;
+    public Discount() {
+        this.totalDiscount = 0;
+        this.christmasDDayDiscount = 0;
+        this.dayOfWeekDiscount = 0;
+        this.specialDiscount = 0;
+        this.additionalEventDiscount = 0;
+        this.eventBadge = Badge.NONE;
+    }
+
+    public Discount(int christmasDDayDiscount, int dayOfWeekDiscount, int specialDiscount, int additionalEventDiscount) {
         this.christmasDDayDiscount = christmasDDayDiscount;
         this.dayOfWeekDiscount = dayOfWeekDiscount;
         this.specialDiscount = specialDiscount;
         this.additionalEventDiscount = additionalEventDiscount;
-        this.eventBadge = eventBadge;
+
+        this.totalDiscount = calculateTotalDiscount();
+        this.eventBadge = Badge.getBadge(this.totalDiscount);
+    }
+
+    private int calculateTotalDiscount() {
+        return christmasDDayDiscount + dayOfWeekDiscount + specialDiscount + additionalEventDiscount;
     }
 
     public int getTotalDiscount() {
