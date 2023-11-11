@@ -33,7 +33,7 @@ class DiscountServiceTest {
     }
 
     @ParameterizedTest
-    @CsvSource({"1, 1000, 4046, 25000, 30046", "25, 3400, 6069, 25000, 34469", "31, 0, 6069, 25000, 31069"})
+    @CsvSource({"1, 1000, 4046, 0, 25000, 30046", "25, 3400, 6069, 1000, 25000, 35469", "31, 0, 6069, 1000, 25000, 32069"})
     void getDiscount(int day, int christmasDDayDiscount, int dayOfWeekDiscount, int specialDiscount, int additionalEventDiscount, int totalDiscount) {
         Discount result = discountService.getDiscount(day, testOrder);
 
