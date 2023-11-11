@@ -37,12 +37,28 @@ class DiscountServiceTest {
     void getDiscount(int day, int christmasDDayDiscount, int dayOfWeekDiscount, int specialDiscount, int additionalEventDiscount, int totalDiscount) {
         Discount result = discountService.getDiscount(day, testOrder);
 
+        assertThat(result.getTotalDiscount()).isEqualTo(totalDiscount);
         assertThat(result.getChristmasDDayDiscount()).isEqualTo(christmasDDayDiscount);
         assertThat(result.getDayOfWeekDiscount()).isEqualTo(dayOfWeekDiscount);
         assertThat(result.getSpecialDiscount()).isEqualTo(specialDiscount);
         assertThat(result.getAdditionalEventDiscount()).isEqualTo(additionalEventDiscount);
         assertThat(result.getEventBadge()).isEqualTo(Badge.SANTA);
-        assertThat(result.getTotalDiscount()).isEqualTo(totalDiscount);
+    }
+
+    @Test
+    void getDiscount_10000원_미만_주문() {
+        Map<Menu, Integer> orderStore = new HashMap<>();
+        orderStore.put(Menu.CAESAR_SALAD, 1);
+        int day = 1;
+
+        Discount result = discountService.getDiscount(day, new Order(orderStore));
+
+        assertThat(result.getTotalDiscount()).isEqualTo(0);
+        assertThat(result.getChristmasDDayDiscount()).isEqualTo(0);
+        assertThat(result.getDayOfWeekDiscount()).isEqualTo(0);
+        assertThat(result.getSpecialDiscount()).isEqualTo(0);
+        assertThat(result.getAdditionalEventDiscount()).isEqualTo(0);
+        assertThat(result.getEventBadge()).isEqualTo(Badge.NONE);
     }
 
     @ParameterizedTest
