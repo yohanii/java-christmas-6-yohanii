@@ -1,9 +1,6 @@
 package christmas.service;
 
-import christmas.domain.Badge;
-import christmas.domain.Category;
-import christmas.domain.Discount;
-import christmas.domain.Order;
+import christmas.domain.*;
 
 public class DiscountService {
 
@@ -33,6 +30,9 @@ public class DiscountService {
     }
 
     public int getSpecialDiscount(int day) {
+        if (Event.specialDiscountDays.contains(day)) {
+            return 1000;
+        }
         return 0;
     }
 
