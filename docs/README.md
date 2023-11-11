@@ -8,7 +8,7 @@
 - [ ] 총 혜택 금액을 구한다. - DiscountService#getTotalDiscount()
   - [ ] 총주문 금액 10,000원 이상인지 체크한다.
 - [ ] 총 혜택 금액에 따라 이벤트 배지를 부여한다. - DiscountService#getEventBadge()
-- [ ] 메뉴에 따라 총 구매 금액을 구한다. - MenuService#getTotalPrice()
+- [x] 메뉴에 따라 총 구매 금액을 구한다. - MenuService#getTotalPrice()
 - [x] 주문 메뉴 잘못되었는지 체크한다.
   - [x] 예외처리 : 음료만 주문한 경우 - Order#validateDrinkOnly()
   - [x] 예외처리 : 총 메뉴 개수가 20개 초과인 경우 - Order#validateMenuCountOver()

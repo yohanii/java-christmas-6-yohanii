@@ -4,7 +4,12 @@ import christmas.domain.Order;
 
 public class MenuService {
 
-    public int getTotalPrice(Order order) {
-        return 0;
+    public Integer getTotalPrice(Order order) {
+        return order.getOrderStore()
+                .entrySet()
+                .stream()
+                .map(entry -> entry.getKey().getPrice() * entry.getValue())
+                .reduce((x, y) -> x + y)
+                .orElse(0);
     }
 }
