@@ -11,7 +11,7 @@ public class DiscountService {
     }
 
     public int getChristmasDDayDiscount(int day) {
-        return 0;
+        return day <= 25 ? 1000 + 100 * (day - 1) : 0;
     }
 
     public int getDayOfWeekDiscount(int day, Order order) {

@@ -1,7 +1,7 @@
 # 크리스마스 프로모션
 
 ## 구현할 기능 목록
-- [ ] 날짜에 따라 크리스마스 디데이 할인 금액을 구한다. - DiscountService#getChristmasDDayDiscount()
+- [x] 날짜에 따라 크리스마스 디데이 할인 금액을 구한다. - DiscountService#getChristmasDDayDiscount()
 - [ ] 날짜의 요일에 따른 할인 금액을 구한다. - DiscountService#getDayOfWeekDiscount()
 - [ ] 날짜에 따른 특별 할인 금액을 구한다. - DiscountService#getSpecialDiscount()
 - [ ] 증정 이벤트로 받는 메뉴의 금액을 체크한다. - DiscountService#getAdditionalEventDiscount()
