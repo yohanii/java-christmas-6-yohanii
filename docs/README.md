@@ -14,7 +14,6 @@
 - [ ] 주문한 메뉴 개수가 20개 초과인지 체크한다. - MenuService#checkMenuCountOver()
   - [ ] 주문한 메뉴 총 개수를 구한다.
 - [ ] 주문 메뉴 잘못되었는지 체크한다.
-  - [ ] 예외처리 : 없는 메뉴를 주문하는 경우 - Order#validateMenuExisted()
   - [ ] 예외처리 : 음료만 주문한 경우 - Order#validateDrinkOnly()
   - [ ] 예외처리 : 총 메뉴 개수가 20개 초과인 경우 - Order#validateMenuCountOver()
 - [x] 입력
@@ -25,6 +24,7 @@
     - [x] 예외처리 : 메뉴 형식이 다른 경우
     - [x] 예외처리 : 메뉴의 개수가 1 이상의 숫자가 아닌 경우
     - [x] 예외처리 : 중복 메뉴를 입력한 경우
+    - [x] 예외처리 : 없는 메뉴를 주문하는 경우
 - [ ] 출력
   - [ ] 방문 날짜 안내 문구 출력 - OutputView#printDateGuide()
   - [ ] 메뉴 안내 문구 출력 - OutputView#printMenuGuide()

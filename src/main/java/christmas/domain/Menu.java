@@ -45,6 +45,10 @@ public enum Menu {
     }
 
     public static Menu of(String name) {
-        return nameToMenu.get(name);
+        Menu menu = nameToMenu.get(name);
+        if (menu == null) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+        return menu;
     }
 }

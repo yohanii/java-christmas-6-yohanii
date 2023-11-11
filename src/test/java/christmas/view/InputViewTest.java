@@ -82,4 +82,12 @@ class InputViewTest {
         assertThatThrownBy(() -> InputView.validateMenu(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void validateMenu_없는_메뉴_예외처리() {
+        String input = "본본스테이크-1,바비큐립-1,초코케이크-2,티본스테이크-1";
+
+        assertThatThrownBy(() -> InputView.validateMenu(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
