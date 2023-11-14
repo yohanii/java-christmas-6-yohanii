@@ -5,6 +5,7 @@ import christmas.domain.Event;
 import christmas.domain.Order;
 
 import java.text.DecimalFormat;
+import java.util.Map;
 
 public class OutputView {
 
@@ -14,51 +15,38 @@ public class OutputView {
         System.out.println("\n<증정 메뉴>");
         System.out.println(getAdditionalEventMenu(discount));
         System.out.println("\n<혜택 내역>");
-        printDiscounts(discount);
-        System.out.println("\n<총혜택 금액>");
-        printTotalDiscount(discount);
+        System.out.println(getDiscounts(discount));
+        System.out.println("<총혜택 금액>");
+        System.out.println(getTotalDiscount(discount));
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(toMoneyFormat(totalPrice - discount.getTotalDiscountExceptAdditionalEvent()));
         System.out.println("\n<12월 이벤트 배지>");
         System.out.println(discount.getEventBadge().getName());
     }
 
-    private static void printTotalDiscount(Discount discount) {
+    private static String getTotalDiscount(Discount discount) {
         int totalDiscount = discount.getTotalDiscount();
-        if (totalDiscount == 0) {
-            System.out.println("0원");
-            return;
-        }
-        System.out.println("-" + toMoneyFormat(totalDiscount));
+        return totalDiscount == 0 ? "0원" : "-" + toMoneyFormat(totalDiscount);
     }
 
-    private static void printDiscounts(Discount discount) {
-        int christmasDDayDiscount = discount.getChristmasDDayDiscount();
-        int weekDayDiscount = discount.getWeekDayDiscount();
-        int weekEndDiscount = discount.getWeekEndDiscount();
-        int specialDiscount = discount.getSpecialDiscount();
-        int additionalEventDiscount = discount.getAdditionalEventDiscount();
+    private static String getDiscounts(Discount discount) {
+        Map<String, String> discountStringMap = Map.of(
+                "christmasDDayDiscount", "크리스마스 디데이 할인",
+                "weekDayDiscount", "평일 할인",
+                "weekEndDiscount", "주말 할인",
+                "specialDiscount", "특별 할인",
+                "additionalEventDiscount", "증정 이벤트"
+        );
+        Map<String, Integer> discountValues = discount.values();
 
-        if (christmasDDayDiscount == 0 && weekDayDiscount == 0 && weekEndDiscount == 0 && specialDiscount == 0 && additionalEventDiscount == 0) {
-            System.out.println("없음");
-            return;
+        String discountsFormat = discountValues.keySet()
+                .stream()
+                .filter(key -> discountValues.get(key) != 0)
+                .reduce("", (x, y) -> x + discountStringMap.get(y) + ": -" + toMoneyFormat(discountValues.get(y)) + "\n");
+        if (discountsFormat.length() == 0) {
+            return "없음\n";
         }
-
-        if (christmasDDayDiscount != 0) {
-            System.out.println("크리스마스 디데이 할인: -" + toMoneyFormat(christmasDDayDiscount));
-        }
-        if (weekDayDiscount != 0) {
-            System.out.println("평일 할인: -" + toMoneyFormat(weekDayDiscount));
-        }
-        if (weekEndDiscount != 0) {
-            System.out.println("주말 할인: -" + toMoneyFormat(weekEndDiscount));
-        }
-        if (specialDiscount != 0) {
-            System.out.println("특별 할인: -" + toMoneyFormat(specialDiscount));
-        }
-        if (additionalEventDiscount != 0) {
-            System.out.println("증정 이벤트: -" + toMoneyFormat(additionalEventDiscount));
-        }
+        return discountsFormat;
     }
 
     private static String getAdditionalEventMenu(Discount discount) {
@@ -75,7 +63,7 @@ public class OutputView {
                 .forEach((menu, quantity) -> System.out.println(menu.getName() + " " + quantity + "개"));
     }
 
-    public static String toMoneyFormat(int price) {
+    private static String toMoneyFormat(int price) {
         DecimalFormat formatter = new DecimalFormat("###,###원");
         return formatter.format(price);
     }

@@ -1,7 +1,13 @@
 package christmas.domain;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class Discount {
 
+    public static final List<String> VALUES_KEYS = List.of("christmasDDayDiscount", "weekDayDiscount", "weekEndDiscount", "specialDiscount", "additionalEventDiscount");
     private final int totalDiscount;
     private final int totalDiscountExceptAdditionalEvent;
     private final int christmasDDayDiscount;
@@ -68,5 +74,20 @@ public class Discount {
 
     public Badge getEventBadge() {
         return eventBadge;
+    }
+
+    public Map<String, Integer> values() {
+        return Arrays.stream(this.getClass().getDeclaredFields())
+                .filter(value -> {
+                    value.setAccessible(true);
+                    return VALUES_KEYS.contains(value.getName());
+                })
+                .collect(Collectors.toMap(value -> value.getName(), value -> {
+                    try {
+                        return (Integer) value.get(this);
+                    } catch (IllegalAccessException e) {
+                        return null;
+                    }
+                }));
     }
 }
