@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import java.util.Collections;
 import java.util.Map;
 
 public class Order {
@@ -9,7 +10,7 @@ public class Order {
     public Order(Map<Menu, Integer> orderStore) {
         validateDrinkOnly(orderStore);
         validateMenuCountOver(orderStore);
-        this.orderStore = orderStore;
+        this.orderStore = Collections.unmodifiableMap(orderStore);
     }
 
     public Map<Menu, Integer> getOrderStore() {
