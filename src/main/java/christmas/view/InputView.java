@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
+    public static final int MIN_DATE = 1;
+    public static final int MAX_DATE = 31;
+    public static final int MIN_MENU_QUANTITY = 1;
+
     public static int readDate() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
         System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
@@ -37,7 +41,7 @@ public class InputView {
     public static int validateDate(String input) {
         try {
             Integer date = Integer.valueOf(input);
-            if (date < 1 || date > 31) {
+            if (date < MIN_DATE || date > MAX_DATE) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             }
             return date;
@@ -64,7 +68,7 @@ public class InputView {
 
     private static Integer validateMenuQuantity(String input) {
         Integer quantity = Integer.valueOf(input);
-        if (quantity < 1) {
+        if (quantity < MIN_MENU_QUANTITY) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
         return quantity;

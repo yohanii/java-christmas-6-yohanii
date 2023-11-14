@@ -30,19 +30,12 @@ public class OutputView {
     }
 
     private static String getDiscounts(Discount discount) {
-        Map<String, String> discountStringMap = Map.of(
-                "christmasDDayDiscount", "크리스마스 디데이 할인",
-                "weekDayDiscount", "평일 할인",
-                "weekEndDiscount", "주말 할인",
-                "specialDiscount", "특별 할인",
-                "additionalEventDiscount", "증정 이벤트"
-        );
         Map<String, Integer> discountValues = discount.values();
 
         String discountsFormat = discountValues.keySet()
                 .stream()
                 .filter(key -> discountValues.get(key) != 0)
-                .reduce("", (x, y) -> x + discountStringMap.get(y) + ": -" + toMoneyFormat(discountValues.get(y)) + "\n");
+                .reduce("", (x, y) -> x + Event.discountStringMap.get(y) + ": -" + toMoneyFormat(discountValues.get(y)) + "\n");
         if (discountsFormat.length() == 0) {
             return "없음\n";
         }
@@ -50,10 +43,7 @@ public class OutputView {
     }
 
     private static String getAdditionalEventMenu(Discount discount) {
-        if (discount.getAdditionalEventDiscount() > 0) {
-            return Event.additionalEventMenu.getName() + " 1개";
-        }
-        return "없음";
+        return discount.getAdditionalEventDiscount() > 0 ? Event.ADDITIONAL_EVENT_MENU.getName() + " 1개" : "없음";
     }
 
     public static void printMenu(int day, Order order) {

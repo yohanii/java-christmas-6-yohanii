@@ -27,11 +27,11 @@ public class Order {
     }
 
     public static void validateMenuCountOver(Map<Menu, Integer> orderStore) {
-        Integer menuCount = orderStore.values()
+        Integer menuCountSum = orderStore.values()
                 .stream()
                 .reduce((x, y) -> x + y)
                 .orElse(0);
-        if (menuCount > 20) {
+        if (menuCountSum > 20) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }

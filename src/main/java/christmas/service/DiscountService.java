@@ -4,28 +4,22 @@ import christmas.domain.*;
 
 public class DiscountService {
 
+    public static final int ZERO_DISCOUNT = 0;
+
     public Discount getDiscount(int day, Order order) {
         Integer totalPrice = Order.getTotalPrice(order);
-        if (totalPrice < 10000) {
+        if (totalPrice < Event.MIN_EVENT_APPLY_PRICE) {
             return new Discount();
         }
 
         if (isWeekend(day)) {
-            return new Discount(getChristmasDDayDiscount(day)
-                    , 0
-                    , getDayOfWeekDiscount(day, order)
-                    , getSpecialDiscount(day)
-                    , getAdditionalEventDiscount(totalPrice));
+            return new Discount(getChristmasDDayDiscount(day), ZERO_DISCOUNT, getDayOfWeekDiscount(day, order), getSpecialDiscount(day), getAdditionalEventDiscount(totalPrice));
         }
-        return new Discount(getChristmasDDayDiscount(day)
-                , getDayOfWeekDiscount(day, order)
-                , 0
-                , getSpecialDiscount(day)
-                , getAdditionalEventDiscount(totalPrice));
+        return new Discount(getChristmasDDayDiscount(day), getDayOfWeekDiscount(day, order), ZERO_DISCOUNT, getSpecialDiscount(day), getAdditionalEventDiscount(totalPrice));
     }
 
     public int getChristmasDDayDiscount(int day) {
-        return day <= 25 ? 1000 + 100 * (day - 1) : 0;
+        return day <= Event.CHRISTMAS_D_DAY_DISCOUNT_END_DAY ? Event.CHRISTMAS_D_DAY_INITIAL_VALUE + Event.CHRISTMAS_D_DAY_INCREASE_VALUE * (day - 1) : ZERO_DISCOUNT;
     }
 
     public int getDayOfWeekDiscount(int day, Order order) {
@@ -35,9 +29,9 @@ public class DiscountService {
                 .entrySet()
                 .stream()
                 .filter(entry -> entry.getKey().getCategory().equals(discountCategory))
-                .map(entry -> entry.getValue() * 2023)
+                .map(entry -> entry.getValue() * Event.DAY_OF_WEEK_DISCOUNT_VALUE)
                 .reduce((x, y) -> x + y)
-                .orElse(0);
+                .orElse(ZERO_DISCOUNT);
     }
 
     private boolean isWeekend(int day) {
@@ -46,17 +40,17 @@ public class DiscountService {
     }
 
     public int getSpecialDiscount(int day) {
-        if (Event.specialDiscountDays.contains(day)) {
-            return 1000;
+        if (Event.SPECIAL_DISCOUNT_DAYS.contains(day)) {
+            return Event.SPECIAL_DISCOUNT_VALUE;
         }
-        return 0;
+        return ZERO_DISCOUNT;
     }
 
     public int getAdditionalEventDiscount(int totalPrice) {
-        if (totalPrice >= Event.additionalEventStandardPrice) {
-            return Event.additionalEventMenu.getPrice();
+        if (totalPrice >= Event.ADDITIONAL_EVENT_APPLY_PRICE) {
+            return Event.ADDITIONAL_EVENT_MENU.getPrice();
         }
-        return 0;
+        return ZERO_DISCOUNT;
     }
 
     public Badge getEventBadge(int totalDiscount) {
