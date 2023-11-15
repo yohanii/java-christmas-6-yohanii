@@ -2,9 +2,12 @@ package christmas.service;
 
 import christmas.domain.*;
 
+import java.util.List;
+
 public class DiscountService {
 
     public static final int ZERO_DISCOUNT = 0;
+    public static final int ONE_WEEK = 7;
 
     public Discount getDiscount(int day, Order order) {
         Integer totalPrice = Order.getTotalPrice(order);
@@ -35,8 +38,8 @@ public class DiscountService {
     }
 
     private boolean isWeekend(int day) {
-        int remain = day % 7;
-        return remain == 1 || remain == 2;
+        int remain = day % ONE_WEEK;
+        return Event.DAY_OF_WEEKEND_OF_FIRST_WEEK.contains(remain);
     }
 
     public int getSpecialDiscount(int day) {

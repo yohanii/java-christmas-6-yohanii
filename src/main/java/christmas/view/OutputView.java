@@ -20,7 +20,7 @@ public class OutputView {
         System.out.println(getTotalDiscount(discount));
         System.out.println("\n<할인 후 예상 결제 금액>");
         System.out.println(toMoneyFormat(totalPrice - discount.getTotalDiscountExceptAdditionalEvent()));
-        System.out.println("\n<12월 이벤트 배지>");
+        System.out.println("\n<" + Event.EVENT_MONTH + "월 이벤트 배지>");
         System.out.println(discount.getEventBadge().getName());
     }
 
@@ -47,7 +47,7 @@ public class OutputView {
     }
 
     public static void printMenu(int day, Order order) {
-        System.out.println("12월 " + day + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
+        System.out.println(Event.EVENT_MONTH + "월 " + day + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
         System.out.println("<주문 메뉴>");
         order.getOrderStore()
                 .forEach((menu, quantity) -> System.out.println(menu.getName() + " " + quantity + "개"));
